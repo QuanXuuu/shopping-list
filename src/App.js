@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "./components/Header.js";
+import Searchbar from "./components/Searchbar.js";
 import { useEffect, useState } from "react";
 
 const initialItems = [
@@ -79,7 +80,7 @@ export default function App() {
   return (
     <AppContainer className="App">
       <Header />
-
+      <Searchbar />
       <AppItems>
         {items.map(({ _id, name }) => (
           <AppItem key={_id}>

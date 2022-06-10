@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 function Searchbar() {
   return (
-    <Form>
+    <SearchForm>
       <SearchTitle htmlFor="search">What do you want to buy ?</SearchTitle>
-      <input id="search" type="text" name="search" />
-      <SearchButton>Search</SearchButton>
-    </Form>
+      <SearchInput id="search" type="text" name="search" />
+    </SearchForm>
   );
 }
+
+const SearchForm = styled.form``;
 
 const SearchTitle = styled.label`
   font-weight: 1.5rem;
@@ -17,8 +18,9 @@ const SearchTitle = styled.label`
   margin: auto;
 `;
 
-const SearchButton = styled.button`
-  border: none;
+const SearchInput = styled.input`
+  margin-top: 10px;
+  width: 100%;
 `;
 
 export default Searchbar;
