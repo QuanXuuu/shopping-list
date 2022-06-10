@@ -81,8 +81,8 @@ export default function App() {
   }, []);
 
   function onError(error) {
-    document.body.innerHTML = `<span className="error"> "We could not find what 
-    you were looking for. For that we are truly sorry." ${error.message}</span>`;
+    document.body.innerHTML = `<span className="error"> "Sorry, we could not find what 
+    you were looking for..." ${error.message}</span>`;
   }
 
   return (
