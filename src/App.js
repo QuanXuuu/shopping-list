@@ -61,22 +61,25 @@ const initialItems = [
 
 export default function App() {
   const [items, setItems] = useState(initialItems);
-  const [apiUrl, setApiUrl] = useState(
-    "https://fetch-me.vercel.app/api/shopping/items"
-  );
+  const apiUrl = "https://fetch-me.vercel.app/api/shopping/items";
+  useEffect(() => {
+    function loadItems() {
+      console.log("load");
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setItems(data.data);
+        });
+    }
 
-  function loadItems() {
-    console.log("load");
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setItems(data.results);
-      });
-  }
+    loadItems();
+  }, []);
 
   return (
     <AppContainer className="App">
       <Header />
+
       <AppItems>
         {items.map(({ _id, name }) => (
           <AppItem key={_id}>
@@ -94,7 +97,7 @@ const AppContainer = styled.div`
   max-width: 350px;
   margin: 0 auto;
   border: 1px solid black;
-  border-radius: 5%;
+  border-radius: 10%;
   box-shadow: 5px 10px #888888;
   background-color: white;
   padding: 20px;
