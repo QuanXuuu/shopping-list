@@ -60,6 +60,8 @@ const initialItems = [
   },
 ];
 
+//const {Searchbar}
+
 export default function App() {
   const [items, setItems] = useState(initialItems);
   const apiUrl = "https://fetch-me.vercel.app/api/shopping/items";
@@ -71,21 +73,27 @@ export default function App() {
         .then((data) => {
           console.log(data);
           setItems(data.data);
-        });
+        })
+        .catch(onError);
     }
 
     loadItems();
   }, []);
 
+  function onError(error) {
+    document.body.innerHTML = `<span className="error"> "We could not find what 
+    you were looking for. For that we are truly sorry." ${error.message}</span>`;
+  }
+
   return (
     <AppContainer className="App">
-      <Header />
       <Searchbar />
+      <Header />
       <AppItems>
         {items.map(({ _id, name }) => (
-          <AppItem key={_id}>
+          <SingleItem key={_id}>
             <Button>{name.en}</Button>
-          </AppItem>
+          </SingleItem>
         ))}
       </AppItems>
     </AppContainer>
@@ -98,7 +106,7 @@ const AppContainer = styled.div`
   max-width: 350px;
   margin: 0 auto;
   border: 1px solid black;
-  border-radius: 10%;
+  border-radius: 5%;
   box-shadow: 5px 10px #888888;
   background-color: white;
   padding: 20px;
@@ -112,7 +120,7 @@ const AppItems = styled.ul`
   flex-direction: row;
 `;
 
-const AppItem = styled.li`
+const SingleItem = styled.li`
   list-style: none;
 `;
 
