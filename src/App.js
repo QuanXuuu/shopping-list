@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import Header from "./components/Header.js";
+import Heading from "./components/Heading.js";
 import Searchbar from "./components/Searchbar.js";
 import { useEffect, useState } from "react";
+
+//const {Searchbar}
 
 const initialItems = [
   {
@@ -60,18 +62,14 @@ const initialItems = [
   },
 ];
 
-//const {Searchbar}
-
 export default function App() {
   const [items, setItems] = useState(initialItems);
   const apiUrl = "https://fetch-me.vercel.app/api/shopping/items";
   useEffect(() => {
     function loadItems() {
-      console.log("load");
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setItems(data.data);
         })
         .catch(onError);
@@ -86,16 +84,16 @@ export default function App() {
   }
 
   return (
-    <AppContainer className="App">
+    <AppContainer>
       <Searchbar />
-      <Header />
-      <AppItems>
+      <Heading />
+      <ShoppingList>
         {items.map(({ _id, name }) => (
           <SingleItem key={_id}>
             <Button>{name.en}</Button>
           </SingleItem>
         ))}
-      </AppItems>
+      </ShoppingList>
     </AppContainer>
   );
 }
@@ -112,7 +110,7 @@ const AppContainer = styled.div`
   padding: 20px;
 `;
 
-const AppItems = styled.ul`
+const ShoppingList = styled.ul`
   padding: 0;
   gap: 15px;
   display: flex;

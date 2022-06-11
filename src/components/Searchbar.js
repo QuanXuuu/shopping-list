@@ -3,12 +3,12 @@ import { useState } from "react";
 
 export default function Searchbar(items) {
   //const [search, setSearch] = useState("");
-
   //const {search} = window.location;
   //const query
+
   return (
     <SearchForm action="/" method="get" role="search">
-      <SearchTitle htmlFor="myInput">What do you want to buy ?</SearchTitle>
+      <SearchLabel htmlFor="myInput">What do you want to buy ?</SearchLabel>
       <SearchInput
         id="myInput"
         type="text"
@@ -22,7 +22,7 @@ export default function Searchbar(items) {
 
 const SearchForm = styled.form``;
 
-const SearchTitle = styled.label`
+const SearchLabel = styled.label`
   font-weight: 1.5rem;
   font-family: "Josefin Sans", sans-serif;
   font-weight: bold;
