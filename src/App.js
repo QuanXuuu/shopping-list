@@ -1,41 +1,16 @@
 import styled from "styled-components";
 import Heading from "./components/Heading.js";
 import Searchbar from "./components/Searchbar.js";
-import { useEffect, useState } from "react";
-
-//const {Searchbar}
+import SearchList from "./components/SearchList.js";
+import ShoppingItems from "./components/ShoppingList.js";
 
 export default function App() {
-  const [items, setItems] = useState([]);
-  const apiUrl = "https://fetch-me.vercel.app/api/shopping/items";
-  useEffect(() => {
-    function loadItems() {
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          setItems(data.data);
-        })
-        .catch(onError);
-    }
-
-    loadItems();
-  }, []);
-
-  function onError(error) {
-    document.body.innerHTML = `${error.message}`;
-  }
-
   return (
     <AppContainer>
       <Searchbar />
+      <SearchList />
       <Heading />
-      <ShoppingList>
-        {items.map(({ _id, name }) => (
-          <SingleItem key={_id}>
-            <Button>{name.en}</Button>
-          </SingleItem>
-        ))}
-      </ShoppingList>
+      <ShoppingItems />
     </AppContainer>
   );
 }
@@ -50,24 +25,4 @@ const AppContainer = styled.div`
   box-shadow: 5px 10px #888888;
   background-color: white;
   padding: 20px;
-`;
-
-const ShoppingList = styled.ul`
-  padding: 0;
-  gap: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-`;
-
-const SingleItem = styled.li`
-  list-style: none;
-`;
-
-const Button = styled.button`
-  padding: 10px;
-  background-color: #0099cc;
-  color: white;
-  border: none;
-  border-radius: 5px;
 `;
