@@ -1,24 +1,39 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-function Searchbar() {
+export default function Searchbar(items) {
+  //const [search, setSearch] = useState("");
+  //const {search} = window.location;
+  //const query
+
   return (
-    <Form>
-      <SearchTitle htmlFor="search">What do you want to buy ?</SearchTitle>
-      <input id="search" type="text" name="search" />
-      <SearchButton>Search</SearchButton>
-    </Form>
+    <SearchForm action="/" method="get" role="search">
+      <SearchLabel htmlFor="myInput">What do you want to buy ?</SearchLabel>
+      <SearchInput
+        id="myInput"
+        type="text"
+        name="search"
+        placeholder="search.."
+        //onChange={(event = setSearch(event.target.value))}
+      />
+    </SearchForm>
   );
 }
 
-const SearchTitle = styled.label`
+const SearchForm = styled.form``;
+
+const SearchLabel = styled.label`
   font-weight: 1.5rem;
   font-family: "Josefin Sans", sans-serif;
   font-weight: bold;
   margin: auto;
 `;
 
-const SearchButton = styled.button`
-  border: none;
+const SearchInput = styled.input`
+  margin-top: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #585858;
+  //background-image: url("http://www.w3.org/2000/svg");
 `;
-
-export default Searchbar;
